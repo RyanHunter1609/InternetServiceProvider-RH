@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+/**
+ * Created by ryan hunter of 1/27/17.
+ */
+
+
+public class InternetServiceProvider {
+    public static void main(String[] args) {
+
+        final double PackageA_Price = 9.95;
+        final double PackageB_Price = 13.95;
+        final double PackageC_Price = 19.95;
+        final int PackageA_HrLimit = 10;
+        final int PackageB_HrLimit = 20;
+        final double PackageA_ExtraFee = 2;
+        final double PackageB_ExtraFee = 1;
+        int userInputHours;
+        int exceededHrs = 0;
+        double extraCharge = 0;
+        double totalBill = 0;
+
+
+        // Create a Scanner object to read from the keyboard.
+        Scanner scanner = new Scanner(System.in);
+
+        String userInputPackage;
+
+        System.out.println("Package Type:");
+        userInputPackage = scanner.nextLine();
+
+        System.out.println("Hours Used:");
+        userInputHours = scanner.nextInt();
+
+        if (userInputPackage.equalsIgnoreCase("a")) {
+            if (userInputHours > PackageA_HrLimit) {
+                exceededHrs = userInputHours - PackageA_HrLimit;
+                extraCharge = exceededHrs * PackageA_ExtraFee;
+
+            }
+            totalBill = PackageA_Price + extraCharge;
+
+        } else if (userInputPackage.equalsIgnoreCase("b")) {
+            if (userInputHours > PackageB_HrLimit) {
+                exceededHrs = userInputHours - PackageB_HrLimit;
+                extraCharge = exceededHrs * PackageB_ExtraFee;
+
+            }
+            totalBill = PackageB_Price + extraCharge;
+
+        } else if (userInputPackage.equalsIgnoreCase("c")) {
+            totalBill = PackageC_Price;
+        }
+        System.out.printf("Package: %s\nHours Exceeded: %d\nExtra Charge: $%,.2f Total Bill: $%,.2f",
+                userInputPackage, exceededHrs, extraCharge, totalBill);
+
+
+    }
+}
